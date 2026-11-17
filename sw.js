@@ -1,6 +1,6 @@
 /* Prefer current files over stale cached pages, with offline fallback. */
-const CACHE='study-orbit-v8-knowledge-first-20261118';
-const ASSETS=['./','./index.html','./style.css?v=3','./data.js?v=5','./repo-guides.js?v=5','./media-guides.js?v=3','./sprint-data.js?v=6','./sprint-engine.js?v=6','./two-sum-cards.js?v=8','./two-sum-lesson.js?v=8','./two-sum-lesson.css?v=8','./sprint.js?v=7','./sprint.css?v=6','./app.js?v=7','./ai-helper.js?v=6','./ai-helper.css?v=4','./favicon.svg','./manifest.webmanifest'];
+const CACHE='study-orbit-v9-interactive-20261118';
+const ASSETS=['./','./index.html','./style.css?v=3','./data.js?v=5','./repo-guides.js?v=5','./media-guides.js?v=3','./sprint-data.js?v=6','./sprint-engine.js?v=6','./two-sum-cards.js?v=8','./two-sum-lesson.js?v=9','./two-sum-lesson.css?v=9','./sprint.js?v=7','./sprint.css?v=6','./app.js?v=7','./ai-helper.js?v=6','./ai-helper.css?v=4','./favicon.svg','./manifest.webmanifest'];
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)));
   self.skipWaiting();
