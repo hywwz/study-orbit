@@ -134,6 +134,7 @@ document.addEventListener('input',event=>{if(event.target.id==='guide-note'){sta
 $('#back-today').addEventListener('click',()=>{date=clampDate(chinaDate());nav('today')});
 $('#quick-export').addEventListener('click',exportState);
 const h=location.hash.slice(1);if(['today','calendar','projects','leetcode','interview','apply','library','review','planner','issues'].includes(h))view=h;
+if(h==='two-sum')view='coach';
 window.Orbit={getState:()=>state,replaceState:c=>{state={...makeDefault(),...c}},getView:()=>view,getDate:()=>date,save,render,nav,openGuide,toast,openExtraGuide:id=>{activeGuide=id;view='guide';render();window.scrollTo({top:0,behavior:'instant'})}};
 Sprint.install(window.Orbit);
 if(chinaDate()<DATA.meta.start)date=DATA.meta.start;else date=clampDate(chinaDate());
