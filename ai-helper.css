@@ -1,0 +1,35 @@
+/* Study Orbit optional ChatGPT handoff */
+#so-ai-dock{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}
+.so-ai-fab{position:fixed;right:22px;bottom:26px;z-index:55;min-height:49px;border:0;padding:0 20px;border-radius:30px;background:#146f59;color:white;font-weight:750;font-size:14px;box-shadow:0 10px 28px rgba(10,82,62,.25);cursor:pointer}
+.so-ai-fab:hover{background:#105941}
+.so-ai-dim{position:fixed;inset:0;z-index:59;background:rgba(13,30,25,.27)}
+.so-ai-dim[hidden]{display:none}
+.so-ai-panel{position:fixed;right:0;top:0;bottom:0;z-index:60;width:min(435px,100vw);background:#f8faf9;box-shadow:-18px 0 48px rgba(24,56,45,.15);border-left:1px solid #e3e9e6;transform:translateX(105%);transition:transform .2s ease;display:flex;flex-direction:column;visibility:hidden}
+.so-ai-panel.so-ai-visible{transform:translateX(0);visibility:visible}
+.so-ai-header{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:22px 23px 16px;background:white;border-bottom:1px solid #e1ebe5}
+.so-ai-eyebrow{font-size:10px;font-weight:800;color:#39896f;letter-spacing:1.4px}
+.so-ai-header h2{font-size:20px;line-height:1.3;margin:7px 0 0;color:#203a30}
+.so-ai-close{background:#eef5f1;border:0;border-radius:50%;font-size:24px;line-height:1;width:36px;height:36px;color:#375c4b;cursor:pointer}
+.so-ai-main{padding:20px 22px 34px;overflow-y:auto;overscroll-behavior:contain}
+.so-ai-note,.so-ai-context,.so-ai-privacy{font-size:13px;line-height:1.8;color:#61766e}
+.so-ai-note{background:#eaf5ef;padding:12px 14px;border-radius:12px;color:#315c4e}
+.so-ai-context{border:1px solid #e1eae4;background:white;padding:13px 15px;margin-top:15px;border-radius:12px}
+.so-ai-context span{font-size:11px;color:#718880;display:block}
+.so-ai-context strong{font-size:16px;display:block;color:#1b4638;margin-top:3px}
+.so-ai-context p{margin:3px 0 0;color:#60796b}
+.so-ai-chips{display:flex;gap:7px;flex-wrap:wrap;margin:15px 0}
+.so-ai-chips button{border:1px solid #d4e5d9;background:#f3f9f5;border-radius:9px;padding:8px 10px;font-size:12px;color:#28634b;cursor:pointer}
+.so-ai-label{display:block;font-weight:700;color:#294a3e;margin:10px 0 8px}
+#so-ai-question{width:100%;border:1px solid #cfdfd5;border-radius:12px;background:white;color:#253f34;resize:vertical;min-height:124px;max-height:260px;padding:13px;line-height:1.7;box-sizing:border-box;font:inherit;font-size:14px}
+#so-ai-question:focus{outline:2px solid #91c6ae}
+.so-ai-primary,.so-ai-link{display:block;width:100%;box-sizing:border-box;border-radius:11px;padding:12px 14px;text-align:center;margin-top:10px;cursor:pointer;font-size:13px;font-weight:750;text-decoration:none}
+.so-ai-primary{border:0;color:white;background:#147863}
+.so-ai-link{background:white;border:1px solid #bcd8c8;color:#19674f}
+.so-ai-feedback{min-height:19px;font-size:12px;color:#257451;line-height:1.6}
+.so-ai-preview{border-top:1px solid #e1e9e4;margin-top:13px;padding-top:13px}
+.so-ai-preview summary{cursor:pointer;color:#446b5a;font-size:12px}
+.so-ai-preview pre{overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;font-family:inherit;font-size:12px;background:#fff;border:1px solid #e2eae5;border-radius:10px;padding:12px;line-height:1.65}
+.so-ai-privacy{font-size:11px;margin:14px 0}
+@media(min-width:1100px){.so-ai-dim{display:none}.so-ai-panel{width:420px}.so-ai-panel.so-ai-visible~.unused{display:none}}
+@media(max-width:850px){.so-ai-fab{right:16px;bottom:87px;min-height:45px;padding:0 15px}.so-ai-panel{width:min(420px,92vw)}}
+@media(max-width:480px){.so-ai-panel{width:100vw}.so-ai-header{padding-top:max(20px, env(safe-area-inset-top))}.so-ai-main{padding-bottom:max(34px, env(safe-area-inset-bottom))}}
