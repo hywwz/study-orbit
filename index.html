@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#edf5f0">
+<meta name="description" content="星轨：AI 应用与 Agent 实习备战学习空间。RepoLens、MediaFlow、LeetCode Hot 100、八股、面试与投递。">
+<title>星轨 · AI 实习备战</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app" class="app-shell">
+  <aside class="sidebar">
+    <a href="#today" class="brand" aria-label="返回今日学习"><span class="brand-glyph">✳</span><span><strong>星轨 Study Orbit</strong><small>AI 实习备战空间</small></span></a>
+    <div class="nav-kicker">学习空间 · WORKSPACE</div>
+    <nav id="side-nav" class="side-nav" aria-label="主导航">
+      <button data-view="today" class="nav-btn active"><span class="nav-symbol">◈</span> 今日学习 <span class="nav-count" id="nav-today"></span></button>
+      <button data-view="calendar" class="nav-btn"><span class="nav-symbol">▦</span> 学习航线</button>
+      <button data-view="projects" class="nav-btn"><span class="nav-symbol">⌘</span> 项目实验室</button>
+      <button data-view="leetcode" class="nav-btn"><span class="nav-symbol">⌁</span> Hot 100 题单</button>
+      <button data-view="interview" class="nav-btn"><span class="nav-symbol">◫</span> 八股训练室</button>
+      <button data-view="apply" class="nav-btn"><span class="nav-symbol">↗</span> 面试与投递</button>
+      <button data-view="library" class="nav-btn"><span class="nav-symbol">▤</span> 资料星库</button>
+      <button data-view="review" class="nav-btn"><span class="nav-symbol">◷</span> 复盘与数据</button>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-status"><span class="pulse-dot"></span><div><strong>向 12.15 前进</strong><small>先有作品 · 再进面试</small></div></div>
+      <button class="sidebar-backup" id="quick-export">备份我的学习记录 <span>↗</span></button>
+      <div class="sidebar-foot">v1.0 · 2026.11—2027.01</div>
+    </div>
+  </aside>
+  <div class="main-wrap">
+    <header class="topbar">
+      <div class="breadcrumbs" id="breadcrumb">学习空间 / <span>今日学习</span></div>
+      <div class="top-right"><span class="top-date" id="clock-date"></span><button class="btn tiny ghost" id="back-today">返回今天</button><span class="avatar" title="专注构建真实作品">AI</span></div>
+    </header>
+    <main class="main-content" id="main-content" aria-live="polite"></main>
+    <div class="toast" id="toast" role="status"></div>
+  </div>
+</div>
+<nav class="mobile-nav" aria-label="移动端导航">
+  <button data-view="today" class="mnav active"><span>◈</span><small>今天</small></button>
+  <button data-view="calendar" class="mnav"><span>▦</span><small>课程</small></button>
+  <button data-view="projects" class="mnav"><span>⌘</span><small>项目</small></button>
+  <button data-view="leetcode" class="mnav"><span>⌁</span><small>刷题</small></button>
+  <button data-view="apply" class="mnav"><span>↗</span><small>面试</small></button>
+  <button data-view="more" class="mnav"><span>···</span><small>更多</small></button>
+</nav>
+<div id="mobile-more" class="mobile-more hidden">
+  <button data-view="interview">八股训练室</button><button data-view="library">资料星库</button><button data-view="review">复盘与备份</button>
+</div>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
