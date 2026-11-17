@@ -1,6 +1,6 @@
 /* Prefer current files over stale cached pages, with offline fallback. */
-const CACHE='study-orbit-v3-20261117';
-const ASSETS=['./','./index.html','./style.css?v=3','./data.js?v=3','./repo-guides.js?v=3','./media-guides.js?v=3','./app.js?v=3','./favicon.svg','./manifest.webmanifest'];
+const CACHE='study-orbit-v4-20261117';
+const ASSETS=['./','./index.html','./style.css?v=3','./data.js?v=3','./repo-guides.js?v=3','./media-guides.js?v=3','./app.js?v=3','./ai-helper.js?v=4','./ai-helper.css?v=4','./favicon.svg','./manifest.webmanifest'];
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)));
   self.skipWaiting();
