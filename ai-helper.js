@@ -43,6 +43,8 @@
   const status = get('so-ai-feedback');
   let context = {};
   function describeLesson() {
+    const sprintContext=window.Sprint?.context();
+    if(sprintContext)return sprintContext;
     const guideTitle = document.querySelector('.guide-hero h1');
     const isGuide = !!guideTitle;
     const title = (guideTitle || document.querySelector('.section-header h1') || document.querySelector('.page-title'))?.textContent?.trim() || '星轨今日学习';
