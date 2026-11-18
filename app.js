@@ -30,13 +30,14 @@ const byId=Object.fromEntries(DATA.problems.map(p=>[p.id,p]));
 function problemsFor(n){if(n<50)return sortedIds.slice(n*2,n*2+2).map(id=>byId[id]);const undone=sortedIds.filter(id=>state.algorithms[id]!==3);return [byId[undone[(n-50)%Math.max(undone.length,1)]||sortedIds[n%100]]];}
 const lessonFor=()=>DATA.lessons.find(x=>x.date===date)||DATA.lessons[0];
 function pathResources(ids){return `<div class="resource-links">${ids.map(id=>R[id]).filter(Boolean).map(r=>`<a href="${e(r.url)}" target="_blank" rel="noopener noreferrer">${e(r.title)} ↗</a>`).join('')}</div>`}
-function nav(next){if(next==='more'){$('#mobile-more').classList.toggle('hidden');return;}view=next;filter='全部';search='';qfilter='全部';$('#mobile-more').classList.add('hidden');render();window.scrollTo({top:0,behavior:'instant'});}
+function nav(next){if(next==='more')next='hub';view=next;filter='全部';search='';qfilter='全部';$('#mobile-more').classList.add('hidden');render();window.scrollTo({top:0,behavior:'instant'});}
 function render(){
- document.querySelectorAll('[data-view]').forEach(el=>el.classList.toggle('active',el.dataset.view===view));
- const label={today:'今日学习',calendar:'学习航线',projects:'项目实验室',leetcode:'Hot 100 题单',interview:'八股训练室',apply:'面试与投递',library:'资料星库',review:'复盘与数据',guide:'项目实验室 / 手把手课程',planner:'计划调整',coach:'算法带练',issues:'问题与补课',legacyToday:'原版每日课程',legacyCalendar:'原62天课程',legacyProjects:'原课程与实验表',legacyAlgo:'原100题库'};
+ const navView=view==='guide'?'projects':view==='coach'?'leetcode':view==='hub'?'more':view;
+ document.querySelectorAll('[data-view]').forEach(el=>el.classList.toggle('active',el.dataset.view===navView));
+ const label={today:'今日学习',calendar:'学习航线',projects:'项目实验室',leetcode:'Hot 100 题单',interview:'八股训练室',apply:'面试与投递',library:'资料星库',review:'复盘与数据',guide:'项目实验室 / 手把手课程',planner:'计划调整',coach:'算法带练',issues:'问题与补课',legacyToday:'原版每日课程',legacyCalendar:'原62天课程',legacyProjects:'原课程与实验表',legacyAlgo:'原100题库',legacyReview:'原复盘记录',hub:'更多',metrics:'实验指标'};
  $('#breadcrumb').innerHTML=`学习空间 / <span>${label[view]}</span>`;
  $('#clock-date').textContent=`北京时间 · ${formatDate(chinaDate())}`;
- const a={today:()=>Sprint.renderToday(date),calendar:Sprint.renderCalendar,projects:Sprint.renderProjects,leetcode:Sprint.renderAlgorithms,planner:Sprint.renderPlanner,coach:Sprint.renderCoach,issues:Sprint.renderIssues,legacyToday:renderToday,legacyCalendar:renderCalendar,legacyProjects:renderProjects,legacyAlgo:renderLeetcode,interview:renderInterview,apply:renderApply,library:renderLibrary,review:renderReview,guide:renderProjectGuide};
+ const a={today:LearningUI.renderToday,calendar:LearningUI.renderCalendar,projects:LearningUI.renderProjects,leetcode:LearningUI.renderAlgorithms,planner:LearningUI.renderPlanner,coach:LearningUI.renderCoach,issues:LearningUI.renderIssues,hub:LearningUI.renderHub,metrics:LearningUI.renderMetrics,legacyToday:renderToday,legacyCalendar:renderCalendar,legacyProjects:renderProjects,legacyAlgo:renderLeetcode,legacyReview:renderReview,interview:LearningUI.renderInterview,apply:LearningUI.renderApply,library:LearningUI.renderLibrary,review:LearningUI.renderReview,guide:LearningUI.renderGuide};
  $('#main-content').innerHTML=a[view]();
  const idx=lessonFor();$('#nav-today').textContent=view==='legacyToday'?`${taskRatio(idx)}/4`:'';
 }
@@ -133,10 +134,11 @@ document.addEventListener('submit',event=>{if(event.target.id!=='application-for
 document.addEventListener('input',event=>{if(event.target.id==='guide-note'){state.guideNotes=state.guideNotes||{};state.guideNotes[activeGuide]=event.target.value;save();return}if(event.target.id==='algo-search'){search=event.target.value;const box=$('#problem-list');if(!box)return;const listed=DATA.problems.filter(p=>(filter==='全部'||p.category===filter)&&(!search||`${p.id}${p.name}${p.category}`.toLowerCase().includes(search.toLowerCase())));box.innerHTML=listed.length?listed.map(p=>`<div class="problem-row"><span class="problem-number">${p.id}</span><a class="problem-title" href="${p.url}" target="_blank" rel="noopener noreferrer">${e(p.name)} ↗</a><span class="problem-category">${e(p.category)}</span><select class="status-select" data-algo="${p.id}"><option value="0" ${!state.algorithms[p.id]?'selected':''}>未开始</option><option value="1" ${state.algorithms[p.id]===1?'selected':''}>已尝试</option><option value="2" ${state.algorithms[p.id]===2?'selected':''}>独立完成</option><option value="3" ${state.algorithms[p.id]===3?'selected':''}>复盘通过</option></select></div>`).join(''):'<div class="empty">没有找到相关题目</div>'}});
 $('#back-today').addEventListener('click',()=>{date=clampDate(chinaDate());nav('today')});
 $('#quick-export').addEventListener('click',exportState);
-const h=location.hash.slice(1);if(['today','calendar','projects','leetcode','interview','apply','library','review','planner','issues'].includes(h))view=h;
+const h=location.hash.slice(1);if(['today','calendar','projects','leetcode','interview','apply','library','review','planner','issues','hub','metrics'].includes(h))view=h;
 if(h==='two-sum')view='coach';
-window.Orbit={getState:()=>state,replaceState:c=>{state={...makeDefault(),...c}},getView:()=>view,getDate:()=>date,save,render,nav,openGuide,toast,openExtraGuide:id=>{activeGuide=id;view='guide';render();window.scrollTo({top:0,behavior:'instant'})}};
+window.Orbit={getGuide:()=>activeGuide,getState:()=>state,replaceState:c=>{state={...makeDefault(),...c}},getView:()=>view,getDate:()=>date,save,render,nav,openGuide,toast,openExtraGuide:id=>{activeGuide=id;view='guide';render();window.scrollTo({top:0,behavior:'instant'})}};
 Sprint.install(window.Orbit);
+LearningUI.install(window.Orbit);
 if(chinaDate()<DATA.meta.start)date=DATA.meta.start;else date=clampDate(chinaDate());
 if(!storageOK){toast('浏览器禁止本地存储；请部署到 HTTPS 网站并及时导出记录')}
 render();

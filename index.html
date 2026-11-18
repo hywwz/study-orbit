@@ -14,8 +14,10 @@
 <link rel="stylesheet" href="sprint.css?v=6">
 <link rel="stylesheet" href="two-sum-lesson.css?v=9">
 <link rel="stylesheet" href="ai-helper.css?v=4">
+<link rel="stylesheet" href="preview.css?v=11">
+<link rel="stylesheet" href="learning-ui.css?v=12">
 </head>
-<body>
+<body class="learning-modern">
 <div id="app" class="app-shell">
   <aside class="sidebar">
     <a href="#today" class="brand" aria-label="返回今日学习"><span class="brand-glyph">✳</span><span><strong>星轨 Study Orbit</strong><small>AI 实习备战空间</small></span></a>
@@ -43,6 +45,7 @@
       <div class="breadcrumbs" id="breadcrumb">学习空间 / <span>今日学习</span></div>
       <div class="top-right"><span class="top-date" id="clock-date"></span><button class="btn tiny ghost" id="back-today">返回今天</button><span class="avatar" title="专注构建真实作品">AI</span></div>
     </header>
+    <nav class="learning-nav" aria-label="学习导航"><button data-view="today">今天</button><button data-view="projects">项目</button><button data-view="leetcode">算法</button><button data-view="interview">面试</button><button data-view="more">更多</button></nav>
     <main class="main-content" id="main-content" aria-live="polite"></main>
     <div class="toast" id="toast" role="status"></div>
   </div>
@@ -66,8 +69,11 @@
 <script src="sprint-engine.js?v=6"></script>
 <script src="two-sum-cards.js?v=8"></script>
 <script src="two-sum-lesson.js?v=9"></script>
-<script src="sprint.js?v=7"></script>
-<script src="app.js?v=7"></script>
+<script src="sprint.js?v=12"></script>
+<script src="learning-content.js?v=12"></script>
+<script src="algorithm-cards.js?v=12"></script>
+<script src="learning-ui.js?v=12"></script>
+<script src="app.js?v=12"></script>
 <script defer src="ai-helper.js?v=6"></script>
 </body>
 </html>
